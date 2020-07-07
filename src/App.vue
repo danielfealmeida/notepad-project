@@ -31,4 +31,12 @@ export default {
     height: 40px;
     font-size: 20px;
   }
+
+  .card.bigger {
+    width: 500px;
+    height: 600px;
+    border: 1px solid #BDBDBD;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    padding: 20px;
+  }
 </style>

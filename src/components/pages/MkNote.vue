@@ -1,7 +1,18 @@
 <template>
   <div class="mkNote">
       <NavbarSmall/>
-      <h1>MAKE A NOTE</h1>
+      <div class="container">
+        <div class="card bigger">
+          <form @submit.prevent="addNote">
+            <h3>Create a Note</h3>
+            <label for="name">Title:</label><br/>
+            <input type="text" name="name" autocomplete="off"/><br/>
+            <label for="content">Text:</label><br/>
+            <textarea name="content" cols="30" rows="10"></textarea><br/>
+            <button>Add</button>
+            </form>
+        </div>
+      </div>
   </div>
 </template>
 
@@ -22,5 +33,38 @@ export default {
 </script>
 
 <style scoped>
+  .container {
+    margin-left: 50%;
+    transform: translate(-40%, 0px);
+    margin-top: 3%;
+    margin-bottom: 3%;
+    padding: 10px;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+  }
 
+  h3 {
+    font-size: 30px;
+  }
+
+  textarea {
+    font-size: 20px;
+    margin-top: 20px;
+  }
+  
+  input {
+      margin-bottom: 20px;
+  }
+  
+  button {
+    margin-top: 20px;
+    height: 50px;
+    width: 90px;
+    border: 1px solid #BDBDBD;
+    background: #2D9CDB;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    color: white;
+  }
 </style>
