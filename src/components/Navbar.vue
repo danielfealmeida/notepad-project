@@ -5,6 +5,11 @@
     <div class="logo-container">
       <h1 class="logo">NotePad</h1>
     </div>
+    <a href="/mknote">
+      <div class="round-btn">
+        <p>+</p>
+      </div>
+    </a>
   </div>
 </template>
 
@@ -48,5 +53,23 @@ export default {
     align-items: center;
     text-align: center;
     color: #FFFFFF;
+  }
+
+  .round-btn {
+    position: absolute;
+    top: 55%;
+    left: 70%;
+    border-radius: 100%;
+    width: 50px;
+    height: 50px;
+    background: crimson;
+  }
+
+  .round-btn p {
+    margin-left: 30%;
+    margin-bottom: 160%;
+    margin-top: -5%;
+    font-size: 50px;
+    color: white;
   }
 </style>

@@ -2,6 +2,7 @@
   <div class="navbar">
     <div class="nav-links">
       <ul>
+        <li class='logo'><a href="/">NotePad</a></li>
         <li><a href="/">Home</a></li>
         <li><a href="/signin">Sign up</a></li>
         <li><a href="/login">Log in</a></li>
@@ -53,5 +54,10 @@ export default {
     margin-top: 20px;
     margin-left: auto;
     margin-right: auto;
+  }
+
+  .logo {
+    margin-top: 0.5%;
+    font-size: 50px;
   }
 </style>
