@@ -5,9 +5,9 @@
           <form @submit.prevent="sendDetails">
               <h1>Sign up</h1>
               <label for="email">Email:</label><br/>
-              <input name="email" type="email" autocomplete="off"/>
+              <input name="email" type="email" autocomplete="off" v-model="email"/>
               <label for="password">Password:</label>
-              <input name="password" type="password" autocomplete="off"/><br/>
+              <input name="password" type="password" autocomplete="off" v-model="password"/><br/>
               <button>SIGN UP</button>
           </form>
       </div>
@@ -21,7 +21,8 @@ export default {
   name: 'Home',
   data () {
     return {
-      
+      password: null,
+      email: null
     }
   },
 

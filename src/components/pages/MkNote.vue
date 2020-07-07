@@ -6,9 +6,9 @@
           <form @submit.prevent="addNote">
             <h3>Create a Note</h3>
             <label for="name">Title:</label><br/>
-            <input type="text" name="name" autocomplete="off"/><br/>
+            <input type="text" name="name" autocomplete="off" v-model="title"/><br/>
             <label for="content">Text:</label><br/>
-            <textarea name="content" cols="30" rows="10"></textarea><br/>
+            <textarea name="content" cols="30" rows="10" v-model="text"></textarea><br/>
             <button>Add</button>
             </form>
         </div>
@@ -23,7 +23,8 @@ export default {
   name: 'mkNote',
   data () {
     return {
-      
+      title: null,
+      text: null
     }
   },
   components: {
