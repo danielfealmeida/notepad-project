@@ -4,6 +4,7 @@ import Home from '@/components/pages/Home'
 import SignIn from '@/components/pages/Signin'
 import Login from '@/components/pages/Login'
 import MkNote from '@/components/pages/MkNote'
+import SeeNote from '@/components/pages/SeeNote'
 
 Vue.use(Router)
 
@@ -29,6 +30,11 @@ export default new Router({
       path: '/mkNote',
       name: 'MkNote',
       component: MkNote
+    },
+    {
+      path: '/seeNote/:id',
+      name: 'SeeNote',
+      component: SeeNote
     },
   ]
 })
