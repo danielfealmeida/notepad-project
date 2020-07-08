@@ -16,6 +16,7 @@
 
 <script>
 import NavbarSmall from "@/components/NavbarSmall"
+import firebase from "firebase"
 
 export default {
   name: 'Home',
@@ -28,6 +29,14 @@ export default {
 
   components: {
     NavbarSmall
+  },
+
+  methods: {
+      sendDetails() {
+          firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(() => {
+              this.$router.push({ name: "Home" })
+          })
+      }
   }
 }
 </script>

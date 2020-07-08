@@ -17,6 +17,7 @@
 <script>
 import NavbarSmall from "@/components/NavbarSmall"
 import firebase from "firebase"
+import axios from "axios"
 
 export default {
   name: 'Home',
@@ -34,7 +35,7 @@ export default {
   methods: {
     sendDetails() {
       firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then((user) => {
-        console.log(user)
+        axios.post("http://localhost:3000/notes/" + user.uid + "/create", { collection: "users", email: firebase.auth().currentUser.email, user: firebase.auth().currentUser.uid })
         this.$router.push({ name: "Home" })
       })
     }

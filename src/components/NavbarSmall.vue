@@ -4,19 +4,37 @@
       <ul>
         <li class='logo'><a href="/">NotePad</a></li>
         <li><a href="/">Home</a></li>
-        <li><a href="/signin">Sign up</a></li>
-        <li><a href="/login">Log in</a></li>
+        <li v-if="!isAuth"><a href="/signin">Sign up</a></li>
+        <li v-if="!isAuth"><a href="/login">Log in</a></li>
+        <li v-if="isAuth"><a @click="logout">Log out</a></li>
+        <li v-if="isAuth"><a>{{ userEmail }}</a></li>
       </ul>
     </div>
   </div>
 </template>
 
 <script>
+import firebase from "firebase"
+
 export default {
   name: 'Navbar',
   data () {
     return {
-      
+      isAuth: null,
+      userEmail: null
+    }
+  },
+
+  mounted() {
+    firebase.auth().onAuthStateChanged(() => {
+      this.isAuth = firebase.auth().currentUser
+      this.userEmail = firebase.auth().currentUser.email
+    })
+  },
+
+  methods: {
+    logout() {
+      firebase.auth().signOut();
     }
   }
 }
