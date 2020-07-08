@@ -7,6 +7,7 @@
 
 <script>
 import Navbar from "@/components/NavbarSmall"
+import db from "./firebase/init"
 
 export default {
   name: 'App',
