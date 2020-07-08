@@ -31,7 +31,7 @@ export default {
   },
 
   mounted() {
-    axios.get("http://localhost:3000/notes/note/" + this.$route.params.id).then(res => {
+    axios.get("https://notepad-server.herokuapp.com/notes/note/" + this.$route.params.id).then(res => {
       this.title = res.data.title
       this.text = res.data.text
     })
@@ -43,7 +43,7 @@ export default {
 
   methods: {
     deleteNote() {
-      axios.get("http://localhost:3000/notes/delete/" + this.$route.params.id).then(() => {
+      axios.get("https://notepad-server.herokuapp.com/notes/delete/" + this.$route.params.id).then(() => {
         this.$router.push({ name: "Home" })
       })
     }

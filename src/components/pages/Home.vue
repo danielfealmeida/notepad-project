@@ -33,7 +33,7 @@ export default {
 
   mounted() {
     firebase.auth().onAuthStateChanged(() => {
-      axios.get("http://localhost:3000/notes/" + firebase.auth().currentUser.uid).then(res => {
+      axios.get("https://notepad-server.herokuapp.com/notes/" + firebase.auth().currentUser.uid).then(res => {
         res.data.forEach(card => {
           if(card.user == firebase.auth().currentUser.uid) {
             this.cards.push(card)

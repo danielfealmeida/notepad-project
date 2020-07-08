@@ -37,7 +37,7 @@ export default {
   methods: {
     addNote() {
       if(this.title && this.text){
-        axios.post("http://localhost:3000/notes/" + firebase.auth().currentUser.uid + "/createNote", {
+        axios.post("https://notepad-server.herokuapp.com/notes/" + firebase.auth().currentUser.uid + "/createNote", {
           title: this.title,
           text: this.text,
           id: slugify(this.title, {
