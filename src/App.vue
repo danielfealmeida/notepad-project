@@ -8,6 +8,8 @@
 <script>
 import Navbar from "@/components/NavbarSmall"
 import db from "./firebase/init"
+import dotenv from "dotenv"
+dotenv.config()
 
 export default {
   name: 'App',

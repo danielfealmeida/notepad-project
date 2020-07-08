@@ -3,14 +3,14 @@
       <NavbarSmall/>
       <div class="container">
         <div class="card bigger">
-          <form @submit.prevent="addNote">
+          <form>
             <h3>Edit a Note</h3>
             <label for="name">Title:</label><br/>
             <input type="text" name="name" autocomplete="off" v-model="title"/><br/>
             <label for="content">Text:</label><br/>
             <textarea name="content" cols="30" rows="10" v-model="text"></textarea><br/>
-            <button>Edit</button>
-            </form>
+          </form>
+          <button @click="deleteNote">Delete</button>
         </div>
       </div>
   </div>
@@ -18,17 +18,35 @@
 
 <script>
 import NavbarSmall from "@/components/NavbarSmall"
+import firebase from "firebase"
+import axios from "axios"
 
 export default {
-  name: 'mkNote',
+  name: 'seeNote',
   data () {
     return {
       title: this.$route.params.id,
       text: null
     }
   },
+
+  mounted() {
+    axios.get("http://localhost:3000/notes/note/" + this.$route.params.id).then(res => {
+      this.title = res.data.title
+      this.text = res.data.text
+    })
+  },
+
   components: {
     NavbarSmall
+  },
+
+  methods: {
+    deleteNote() {
+      axios.get("http://localhost:3000/notes/delete/" + this.$route.params.id).then(() => {
+        this.$router.push({ name: "Home" })
+      })
+    }
   }
 }
 </script>

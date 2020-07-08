@@ -2,10 +2,10 @@
   <div class="home">
     <Navbar/>
     <div class="content">
-      <a href="" v-for="(card, index) in cards" :key="index">
+      <a :href="cardUrls[index]" v-for="(card, index) in cards" :key="index">
         <div class="card">
-          <h3>NOTE</h3>
-          <p>CONTENT</p>
+          <h3>{{ card.title }}</h3>
+          <p>{{ card.text }}</p>
         </div>
       </a>
     </div>
@@ -14,17 +14,34 @@
 
 <script>
 import Navbar from "@/components/Navbar"
+import axios from "axios"
+import slugify from "slugify"
+import firebase from "firebase"
 
 export default {
   name: 'Home',
   data () {
     return {
-      cards: [1, 2, 3, 4]
+      cards: [],
+      cardUrls: []
     }
   },
   
   components: {
     Navbar
+  },
+
+  mounted() {
+    firebase.auth().onAuthStateChanged(() => {
+      axios.get("http://localhost:3000/notes/" + firebase.auth().currentUser.uid).then(res => {
+        res.data.forEach(card => {
+          if(card.user == firebase.auth().currentUser.uid) {
+            this.cards.push(card)
+            this.cardUrls.push("seenote/" + card.id);
+          }
+        });
+      })
+    })
   }
 }
 </script>
@@ -36,6 +53,7 @@ export default {
     border: 1px solid #BDBDBD;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     padding: 20px;
+    font-family: "Roboto";
   }
 
   .content {
@@ -50,19 +68,19 @@ export default {
   }
 
   .card h3 {
-    font-family: Advent Pro;
+    font-family: "Roboto";
     font-style: normal;
     font-weight: 600;
-    font-size: 38px;
+    font-size: 30px;
     line-height: 57px;
     margin: 0px;
   }
 
   .card p {
-    font-family: Advent Pro;
+    font-family: "Roboto";
     font-style: normal;
     font-weight: normal;
-    font-size: 18px;
+    font-size: 20px;
     line-height: 33px;
     align-items: center;
     margin: 0px;

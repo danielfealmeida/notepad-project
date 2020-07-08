@@ -35,7 +35,7 @@ export default {
   methods: {
     sendDetails() {
       firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then((user) => {
-        axios.post("http://localhost:3000/notes/" + user.uid + "/create", { collection: "users", email: firebase.auth().currentUser.email, user: firebase.auth().currentUser.uid })
+        axios.post("http://localhost:3000/notes/createUser", { collection: "users", email: firebase.auth().currentUser.email, user: firebase.auth().currentUser.uid })
         this.$router.push({ name: "Home" })
       })
     }

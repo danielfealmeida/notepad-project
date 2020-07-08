@@ -18,6 +18,9 @@
 
 <script>
 import NavbarSmall from "@/components/NavbarSmall"
+import firebase from "firebase"
+import axios from "axios"
+import slugify from "slugify"
 
 export default {
   name: 'mkNote',
@@ -29,6 +32,24 @@ export default {
   },
   components: {
     NavbarSmall
+  },
+
+  methods: {
+    addNote() {
+      if(this.title && this.text){
+        axios.post("http://localhost:3000/notes/" + firebase.auth().currentUser.uid + "/createNote", {
+          title: this.title,
+          text: this.text,
+          id: slugify(this.title, {
+            replacement: '-',
+            remove: /[*+~.()'"!:@]/g,
+            lower: true,
+          }),
+          user: firebase.auth().currentUser.uid
+        })
+      }
+      this.$router.push({ name: "Home" })
+    }
   }
 }
 </script>
