@@ -6,7 +6,7 @@
         <li><a href="/">Home</a></li>
         <li v-if="!isAuth"><a href="/signin">Sign up</a></li>
         <li v-if="!isAuth"><a href="/login">Log in</a></li>
-        <li v-if="isAuth"><a @click="logout">Log out</a></li>
+        <li v-if="isAuth"><a @click="logout" class="pointer">Log out</a></li>
         <li v-if="isAuth"><a>{{ userEmail }}</a></li>
       </ul>
     </div>
@@ -57,7 +57,7 @@ export default {
     display: flex;
     margin: 0px;
     margin-left: auto;
-    margin-right: auto;
+    margin-right: 100px;
     height: 100px;
     padding: 0px;
   }
@@ -66,16 +66,22 @@ export default {
     display: inline-block;
     list-style: none;
     font-family: 'Advent Pro', sans-serif;
-    font-size: 30px;
+    font-size: 25px;
     color: #FFFFFF;
     width: 100vw;
-    margin-top: 20px;
+    margin-top: 25px;
     margin-left: auto;
     margin-right: auto;
   }
 
   .logo {
     margin-top: 0.5%;
+    margin-left: 0px;
+    margin-right: auto;
     font-size: 50px;
+  }
+
+  .pointer {
+    cursor: pointer;
   }
 </style>

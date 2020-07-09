@@ -4,11 +4,11 @@
       <div class="container">
         <div class="card bigger">
           <form>
-            <h3>Edit a Note</h3>
+            <h3>See or Delete a Note</h3>
             <label for="name">Title:</label><br/>
-            <input type="text" name="name" autocomplete="off" v-model="title"/><br/>
+            <input type="text" name="name" autocomplete="off" v-model="title" readonly/><br/>
             <label for="content">Text:</label><br/>
-            <textarea name="content" cols="30" rows="10" v-model="text"></textarea><br/>
+            <textarea name="content" cols="30" rows="10" v-model="text" readonly></textarea><br/>
           </form>
           <button @click="deleteNote">Delete</button>
         </div>
@@ -26,7 +26,8 @@ export default {
   data () {
     return {
       title: this.$route.params.id,
-      text: null
+      text: null,
+      author: null
     }
   },
 
@@ -34,6 +35,7 @@ export default {
     axios.get("https://notepad-server.herokuapp.com/notes/note/" + this.$route.params.id).then(res => {
       this.title = res.data.title
       this.text = res.data.text
+      this.author = res.data.user
     })
   },
 
@@ -70,10 +72,17 @@ export default {
   textarea {
     font-size: 20px;
     margin-top: 20px;
+    outline: none; 
+    border-width:1px; 
+    border-radius:10px; 
+    border-style:solid; 
+    border-color:#7ddcff;  
   }
   
   input {
       margin-bottom: 20px;
+      margin-top: 20px;
+      width: 70%;
   }
   
   button {
@@ -83,7 +92,7 @@ export default {
     border: 1px solid #BDBDBD;
     background: #2D9CDB;
     font-family: 'Roboto', sans-serif;
-    font-size: 15px;
+    font-size: 20px;
     color: white;
   }
 </style>

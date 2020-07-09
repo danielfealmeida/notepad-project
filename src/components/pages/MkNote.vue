@@ -73,10 +73,17 @@ export default {
   textarea {
     font-size: 20px;
     margin-top: 20px;
+    outline: none; 
+    border-width:1px; 
+    border-radius:10px; 
+    border-style:solid; 
+    border-color:#7ddcff;  
   }
   
   input {
       margin-bottom: 20px;
+      margin-top: 20px;
+      width: 70%;
   }
   
   button {
@@ -86,7 +93,7 @@ export default {
     border: 1px solid #BDBDBD;
     background: #2D9CDB;
     font-family: 'Roboto', sans-serif;
-    font-size: 15px;
+    font-size: 20px;
     color: white;
   }
 </style>

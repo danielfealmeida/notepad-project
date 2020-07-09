@@ -4,11 +4,12 @@
       <div class="container">
           <form @submit.prevent="sendDetails">
               <h1>Log In</h1>
-              <label for="email">Email:</label><br/>
-              <input name="email" type="email" autocomplete="off" v-model="email"/>
-              <label for="password">Password:</label>
+              <label for="email" class="email label">Email:</label><br/>
+              <input name="email" type="email" autocomplete="off" v-model="email"/><br/>
+              <label for="password" class="label">Password:</label><br/>
               <input name="password" type="password" autocomplete="off" v-model="password"/><br/>
-              <button>SIGN UP</button>
+              <button>SIGN UP</button><br/>
+              <label class="feedback">{{ feedback }}</label>
           </form>
       </div>
   </div>
@@ -17,13 +18,16 @@
 <script>
 import NavbarSmall from "@/components/NavbarSmall"
 import firebase from "firebase"
+import animate from "animate.css"
 
 export default {
   name: 'Home',
   data () {
     return {
         password: null,
-        email: null
+        email: null,
+        id: null,
+        feedback: null,
     }
   },
 
@@ -33,9 +37,15 @@ export default {
 
   methods: {
       sendDetails() {
-          firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(() => {
-              this.$router.push({ name: "Home" })
-          })
+          if(this.email && this.password)
+          {
+            firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(() => {
+                this.$router.push({ name: "Home" })
+            })
+          }
+          else {
+              this.feedback = "Fill in all the credentials."
+          }
       }
   }
 }
@@ -46,7 +56,7 @@ export default {
         margin: auto;
         margin-top: 5%;
         width: 350px;
-        height: 400px;
+        height: 370px;
         border: 1px solid #BDBDBD;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         padding: 10px;
@@ -56,26 +66,19 @@ export default {
     }
 
     h1 {
-        margin-bottom: 40px;
-        text-align: left;
+        margin-bottom: 20px;
+        text-align: center;
         padding-left: 20px;
     }
 
-    label {
-        text-align: left;
-    }
-
     input {
-        margin-bottom: 20px;
+      margin-bottom: 20px;
+      margin-top: 20px;
+      width: 100%;
     }
 
-    button {
-        height: 50px;
-        width: 90px;
-        border: 1px solid #BDBDBD;
-        background: #2D9CDB;
-        font-family: 'Roboto', sans-serif;
-        font-size: 15px;
-        color: white;
+    form {
+      margin-left: auto;
+      margin-right: auto;
     }
 </style>

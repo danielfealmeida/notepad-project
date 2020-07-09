@@ -6,8 +6,8 @@
       <h1 class="logo">NotePad</h1>
     </div>
     <a href="/mknote">
-      <div class="round-btn">
-        <p>+</p>
+      <div class="btn">
+        <p>Add Note</p>
       </div>
     </a>
   </div>
@@ -55,21 +55,23 @@ export default {
     color: #FFFFFF;
   }
 
-  .round-btn {
+  .btn {
     position: absolute;
     top: 55%;
-    left: 70%;
-    border-radius: 100%;
-    width: 50px;
+    left: 65%;
+    border-radius: 10%;
+    width: 130px;
     height: 50px;
     background: crimson;
   }
 
-  .round-btn p {
-    margin-left: 30%;
-    margin-bottom: 160%;
-    margin-top: -5%;
-    font-size: 50px;
+  .btn p {
+    text-align: center;
+    margin: auto;
+    margin-top: 8%;
+    font-size: 23px;
+    font-weight: regular;
+    font-family: "Roboto";
     color: white;
   }
 </style>

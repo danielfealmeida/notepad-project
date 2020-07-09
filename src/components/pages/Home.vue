@@ -9,6 +9,7 @@
         </div>
       </a>
     </div>
+    <p v-if="feedback" class="feedback">{{ feedback }}</p>
   </div>
 </template>
 
@@ -17,13 +18,15 @@ import Navbar from "@/components/Navbar"
 import axios from "axios"
 import slugify from "slugify"
 import firebase from "firebase"
+import db from "@/firebase/init.js"
 
 export default {
   name: 'Home',
   data () {
     return {
       cards: [],
-      cardUrls: []
+      cardUrls: [],
+      feedback: null
     }
   },
   
@@ -32,7 +35,9 @@ export default {
   },
 
   mounted() {
-    firebase.auth().onAuthStateChanged(() => {
+    db.collection("notes").onSnapshot(() => {
+      this.cards = [];
+      this.cardUrls = [];
       axios.get("https://notepad-server.herokuapp.com/notes/" + firebase.auth().currentUser.uid).then(res => {
         res.data.forEach(card => {
           if(card.user == firebase.auth().currentUser.uid) {
@@ -41,6 +46,16 @@ export default {
           }
         });
       })
+    })
+  },
+
+  created() {
+    firebase.auth().onAuthStateChanged(() => {
+      if(!firebase.auth().currentUser) {
+        this.cards = []
+        this.cardUrls = []
+        this.feedback = "You need to login to use this application."
+      }
     })
   }
 }
@@ -89,5 +104,13 @@ export default {
   a {
     text-decoration: none;
     color: black;
+  }
+
+  .feedback {
+    margin-right: auto;
+    margin-left: auto;
+    width: 400px;
+    font-size: 20px;
+    color: lightgray;
   }
 </style>
